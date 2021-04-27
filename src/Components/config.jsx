@@ -1,1 +1,1 @@
-export const API_HOST = 'http://localhost:3001'
+export const API_HOST = 'https://stark-harbor-41857.herokuapp.com'
