@@ -1,8 +1,9 @@
-import React,{useEffect}from "react";
+import {useState,useEffect}from "react";
 import {sendDataRegister} from '../BackendServices/services';
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {registerSchema} from "../LoginComponent/Schema"
+import  {Redirect} from  "react-router-dom"
 
 function RegisterForm ()
 {
@@ -10,7 +11,8 @@ function RegisterForm ()
    const  {register,handleSubmit,reset,formState: { errors } } = useForm({
        resolver: yupResolver(registerSchema)
    })
-   
+   const [registered,setRegistered] = useState(false)
+   const [redirect,setRedirect] = useState(null)
    useEffect(()=>{console.log('reset')
        reset()},[])
 
@@ -19,9 +21,16 @@ function RegisterForm ()
      
        console.log(e)
        console.log('register')   
-
-       // sendData(e)   
+       sendDataRegister(e).then((e)=>{
+           if(e==="User Created Sucessfully")
+             {setRegistered(true)
+                setRedirect('/login')
+                console.log("Loading")
+            }
+       })   
     }
+    
+    if (registered) return <Redirect to ={redirect}/>
 
     return(<div className="right">
         <form onSubmit={handleSubmit(handleRegister) }>

@@ -14,7 +14,7 @@ import{API_HOST} from '../Components/config'
                                 email: data.Email,
                                 password: data.Password,
                             })
-                            console.log(data)
+                         return response.data.success_message
                 }
             catch(error){console.log(error.response) } 
   }
