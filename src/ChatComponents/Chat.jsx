@@ -8,7 +8,7 @@ import {createConsumer} from '@rails/actioncable'
 
 export default function Chat({usernameProps}) {
 
-    const URL = 'ws://stark-harbor-41857.herokuapp.com/cable'
+    const URL = 'ws://trio7170.herokuapp.com/cable'
     const consumer = createConsumer(URL)
 
     const messageschema = yup.object().shape({body: yup.string().required(),
