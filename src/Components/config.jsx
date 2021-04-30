@@ -1,1 +1,1 @@
-export const API_HOST = 'https://trio7170.herokuapp.com'
+export const API_HOST = 'http://loaclhost:3001'
