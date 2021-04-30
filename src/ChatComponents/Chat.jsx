@@ -38,7 +38,7 @@ export default function Chat({usernameProps}) {
         
         sendMessage(e)
         console.log(message)
-        messages.push({body: message})
+        if(message !== '') messages.push({body: message})
         console.log(messages)
    
     }
