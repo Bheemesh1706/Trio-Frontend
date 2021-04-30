@@ -28,20 +28,12 @@ export default function Chat({usernameProps}) {
             console.log(e) })
     },[])
 
-    useEffect(()=>{reset()
-    getUserid(username).then((e) =>{setId(e)})},[message])
 
-      
+   useEffect(()=>{reset()
+    getUserid(username).then((e) =>{setId(e)})
+    setMessages(p=>[...p,{body: message}])},[message])
 
-    function handleMessage(e){
-        console.log(e)
-        
-        sendMessage(e)
-        console.log(message)
-        if(message !== '') messages.push({body: message})
-        console.log(messages)
-   
-    }
+    
 
     function addSubscribers() {
         consumer.subscriptions.create(
@@ -75,7 +67,7 @@ export default function Chat({usernameProps}) {
                 {messages?.map((d,index)=> (<p className="text" key={index}>{username}:{d.body}</p>))}
             </div>
             
-            <form className="formMessage"  onSubmit= {handleSubmit(handleMessage)} >
+            <form className="formMessage"  onSubmit= {handleSubmit(sendMessage)} >
              <input type="text"  placeholder="Text" name='body'  {...register('body')}/>
                 <p className="error3">{errors.email?.message}</p> 
              <input type="hidden" name="user_id" value={Id} {...register('user_id')}></input>
